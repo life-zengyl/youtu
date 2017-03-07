@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1" />
+<title>地址簿</title>
+<link rel="stylesheet" href="../../font/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/nctouch_member.css">
+</head>
+<body>
+
+<header id="header">
+  <div class="header-wrap">
+    <div class="header-l"> <a href="member_info.html"><i class="back icon iconfont">&#xe601;</i></a></div>
+    <div class="header-title">
+      <h1>地址簿</h1>
+    </div>
+    <!--<div class="header-r"> <a id="header-nav" href="address_opera.html"><i class="add"></i></a> </div>-->
+  </div>
+</header>
+<div class="nctouch-main-layout mb20">
+  <div class="nctouch-address-list" id="address_list"></div>
+</div>
+
+<!--<footer class="aui-bar aui-bar-tab" id="footer"></footer>-->
+<script type="text/html" id="saddress_list">
+<%if(address_list.length>0){%>
+	<ul>
+	<%for(var i=0;i<address_list.length;i++){%>
+        <li>
+            <dl>
+                <dt>
+					<span class="name"><%=address_list[i].true_name %></span>
+					<span class="phone"><%=address_list[i].mob_phone %></span>
+				</dt>
+                <dd><%=address_list[i].area_info %>&nbsp;<%=address_list[i].address %></dd>
+            </dl>
+            <div class="handle">
+            	<% if (address_list[i].is_default == 1) { %>
+					<input type="radio" name="default_addr" id="" value="" checked="checked"/>
+				<i style="color: #ea4b21;">默认地址</i>
+				<% }else{%>
+					<input type="radio" name="default_addr" id="" value=""/>
+				<i>设置默认</i>
+				<%} %>
+           		<span>
+					<a href="address_opera_edit.html?address_id=<%=address_list[i].address_id %>"><i class="edit"></i>编辑</a><a href="javascript:;" address_id="<%=address_list[i].address_id %>" class="deladdress"><i class="del"></i>删除</a>
+				</span>
+            </div>
+        </li>
+	<%}%>
+    </ul>
+<a href="address_opera.html"><div class="nctouch-address-no-address-add nctouch-address-list-btn">添加新地址</div></a>
+<%}else{%>
+    <div class="nctouch-norecord address">
+		<div class="norecord-ico"><i></i></div>
+			<dl>
+				<dt>暂无地址记录</dt>
+			</dl>
+		</div>
+	</div>
+	<div class="nctouch-address-no-address">
+		<dl>
+			<dt>下单时,可直接选择地址簿联系人</dt>
+			<dt>下单更快捷~</dt>
+		</dl>
+		<div><i class="nctouch-address-no-address-arrow-down"></i></div>
+		<a href="address_opera.html"><div class="nctouch-address-no-address-add">添加新地址</div></a>
+	</div>
+<%}%>
+</script> 
+<script type="text/javascript" src="../../js/zepto.min.js"></script> 
+<script type="text/javascript" src="../../js/config.js"></script> 
+<script type="text/javascript" src="../../js/template.js"></script> 
+<script type="text/javascript" src="../../js/common.js"></script> 
+<script type="text/javascript" src="../../js/simple-plugin.js"></script> 
+<script type="text/javascript" src="../../js/tmpl/address_list.js"></script> 
+<script type="text/javascript" src="../../js/tmpl/footer.js"></script> 
+</body>
+</html>

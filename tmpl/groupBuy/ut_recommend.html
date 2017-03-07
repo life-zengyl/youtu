@@ -1,0 +1,207 @@
+<html><head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1">
+	<title>优途推荐</title>
+	<link rel="stylesheet" type="text/css" href="../../css/base.css">
+	
+	<link rel="stylesheet" type="text/css" href="../../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../../font/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="../../css/group_activity.css">
+</head>
+<body>
+	<header class="header">
+        <div class="header-left">
+            <a href="javascript:history.go(-1)" class="icon iconfont icon-zuosvg"></a>
+        </div>
+        <h1 class="page-tt header-title-img1"></h1>
+    </header>
+	<nav>
+		<div class="type-box">
+			
+		</div>
+		<a href="javascript:;" class="arrow-down">
+			<i class="icon iconfont icon-xiasvg"></i>
+		</a>
+	</nav>
+<div class="main">	
+	<div class="img-box">
+		<img src="http://upload.utoapi.com/mobile/special/s0/s0_05277020042782094.png"  alt=""  width="100%" />
+	</div>
+	
+	<section class="section-col2">
+		<ul class="tab-box">
+			<li class="active"><a href="javascript:;">最新</a></li>
+			<li><a href="javascript:;">价格</a>
+				<p>
+					<a class="icon iconfont icon-shangsvg" href="javascript:;"></a>
+					<a class="icon iconfont icon-xiasvg" href="javascript:;"></a>
+					
+				</p>
+			</li>
+		</ul>
+		<div class="pro-box">
+			<!-- 本周热卖-->
+			<ul class="active"><ul>
+			<!-- 即将开卖-->
+			
+		</div>
+		<div class="no-datas" style="text-align: center;">无数据</div>
+	</section>
+	
+	
+</div>
+<div class="return-top" id="goTopBtn">
+	<i></i>
+</div>
+<div class="show-nav">
+	<i></i>
+</div>
+<a href="../cart_list.html" class="show-cart">
+	<i></i>
+	<sub></sub>
+</a>
+<footer class="aui-bar aui-bar-tab" id="footer"></footer>
+</body>
+
+<script type="text/javascript" src="../../js/zepto.min.js"></script> 
+<script type="text/javascript" src="../../js/template.js"></script> 
+<script type="text/javascript" src="../../js/config.js"></script> 
+<script type="text/javascript" src="../../js/common.js"></script> 
+<script type="text/javascript" src="../../js/tmpl/footer.js"></script> 
+<script type="text/html" id="category-one">
+	<% for(var i = 0;i<class_list.length;i++){ %>
+		
+		<a href="javascript:;" date-id="<%= class_list[i].gc_id %>"><%= class_list[i].gc_name %></a>
+	<% } %>
+	
+</script>
+<script type="text/html" id='list'>
+	<% for(var i=0;i<datas.length;i++){ %>
+		<li>
+		<a href="../product_detail.html?goods_id=<%= datas[i].goods_id %>">
+			<img src="<%= datas[i].goods_image %>">
+		</a>
+		<h3 class="text-overflow"><%= datas[i].goods_name %></h3>
+		<p class="clearfix">
+			<span class="price fleft">¥ <em> <%= datas[i].goods_price %></em></span>
+			<span class="sell-num fright">已售<%= datas[i].goods_salenum %></span>
+		</p>
+		<p><s>¥ <%= datas[i].goods_marketprice %></s></p>
+	</li>
+	<% } %>
+</script>
+<script>
+	$(function(){
+		
+		var Recommend={
+			params:{'curpage':1,'order':1},
+			init:function(){
+				this.Show();
+				this.getList();
+				this.getDefaultPro();
+				this.listOrder();
+				this.returnTop();
+				this.category();
+				this.scrollLoading();
+			},
+			returnTop:function(){
+				$('.return-top').on('click', function () {
+     				$(window).scrollTop(0);
+    			});
+			},
+			Show:function(){
+				var flag=false;
+				$('.arrow-down').click(function(){
+					if(flag){
+						$('.type-box').css('height','2.25rem');
+					}else{
+						$('.type-box').css('height','5rem');
+					}
+					flag=!flag;
+				})
+			},
+			getList:function(){
+				 $.getJSON(ApiUrl+"/index.php?act=goods_class", function(result){
+				 var data = result.datas;
+				 data.WapSiteUrl = WapSiteUrl;
+				 var html = template.render('category-one', data);
+				 $(".type-box").html(html);
+				
+				});
+			},
+			getDefaultPro:function(op){	
+				var _this=this;
+				op=op || _this.params;
+				
+				 $.getJSON(ApiUrl + '/index.php?act=goods&op=recommend',op, function(result) {
+				 	//console.log(result);
+				 	if(result.code==200){
+				 		$('.no-datas').hide();
+				 		var html = template.render('list', result);
+        				$(".pro-box ul.active").append(html);
+        			
+				 	}else{
+				 		$('.no-datas').show();
+				 	}
+				 })
+				 	
+			},
+			listOrder:function(){
+				var _this=this;
+				var flag=true;
+				$('.tab-box li').click(function(){
+					$('.pro-box ul.active').html('');
+					$(this).addClass('active').siblings().removeClass('active');
+					var index=$(this).index();
+					if(index==0){
+						_this.getDefaultPro(_this.params);
+						
+					}else{
+						if(flag){
+							_this.params.order=2;
+							
+						}else{
+							_this.params.order=3
+						}
+						_this.getDefaultPro(_this.params);
+						flag=!flag;
+					}
+				})
+			},
+			category:function(){
+				var _this=this;
+				$('.type-box').delegate('a','click',function(){
+					$(this).addClass('active').siblings().removeClass('active');
+					$('.pro-box ul').html('');
+					var gc_id=$(this).attr('date-id');
+					_this.params.gc_id=gc_id;
+					_this.getDefaultPro(_this.params);
+				})
+			},
+			scrollLoading:function(){
+				var _this=this;
+				 $(window).scroll(function(){
+					if($(window).scrollTop() + $(window).height() > $(document).height()-1){
+						_this.params.curpage++;
+						_this.getDefaultPro(_this.params);
+						console.log(_this.params.curpage);
+					}
+				})
+				
+			}
+			
+			
+			
+		}
+		
+		Recommend.init();
+	})
+</script>
+</html>

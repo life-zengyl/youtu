@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1" />
+<title>手机商城</title>
+<link rel="stylesheet" href="font/iconfont.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/index.css?v1.0">
+<link rel="apple-touch-icon" href="images/touch-icon-iphone.png"/>
+</head>
+<body>
+
+<div class="nctouch-home-top fixed-Width">
+  <header id="header" class="transparent">
+  	<div class="header-pos"><a href="#">北京<i class="icon iconfont">&#xe604;</i></a></div>
+    <div class="header-wrap">
+      <a href="tmpl/search.html" class="header-inp"> <i class="icon iconfont">&#xe615;</i> <span class="search-input" id="keyword"></span> </a>
+    </div>
+    <div class="header-r"><a id="header-nav" href="#"><i class="icon iconfont">&#xe62b;</i></a></div>
+  </header>
+  <div class="cohesive"></div>
+  <div class="adv_list" id="main-container1"></div>
+</div>
+<div class="nctouch-home-nav fixed-Width">
+  <ul>
+    <li><a href="#"><span><i></i></span>
+      <p>油卡充值</p>
+      </a></li>
+    <li><a href="#"><span><i></i></span>
+      <p>油卡查询</p>
+      </a></li>
+    <li><a href="#"><span><i></i></span>
+      <p>油站导航</p>
+      </a></li>
+    <li><a href="tmpl/activity/gas-station.html"><span><i></i></span>
+      <p>油站活动</p>
+      </a></li>
+	  <li><a href="tmpl/groupBuy/procurement.html"><span><i></i></span>
+		  <p>企业采购</p>
+	  </a></li>
+	  <li><a href="tmpl/groupBuy/ut_recommend.html"><span><i></i></span>
+		  <p>优途推介</p>
+	  </a></li>
+	  <li><a href="tmpl/groupBuy/welfare.html"><span><i></i></span>
+		  <p>福利</p>
+	  </a></li>
+	  <li><a href="special.html?special_id=2"><span><i></i></span>
+		  <p>系列</p>
+	  </a></li>
+	  <!--<li><a href="tmpl/member/signin.html"><span><i></i></span>-->
+		  <!--<p>每日签到</p>-->
+	  <!--</a></li>-->
+  </ul>
+	<div class="notice"><span>头条</span><div class="notice-msg">优途商城全场满399包邮，再送满减券</div> </div>
+</div>
+<div class="nctouch-home-layout" id="main-container2"></div>
+<div class="fix-block-r">
+	<a href="javascript:void(0);" class="gotop-btn gotop hide" id="goTopBtn"><i></i></a>
+</div>
+<footer class="aui-bar aui-bar-tab" id="footer"></footer>
+<!--banner-->
+<script type="text/html" id="adv_list">
+		<div class="swipe-wrap">
+		<% for (var i in item) { %>
+			<div class="item">
+				<a href="<%= item[i].url %>">
+					<img src="<%= item[i].image %>" alt="">
+				</a>
+			</div>
+		<% } %>
+		</div>
+</script> 
+<script type="text/html" id="home1">
+	<div class="nctouch-home-block">
+	<% if (title) { %>
+		<div class="tit-bar"><%= title %></div>
+	<% } %>
+		<div class="item-pic">
+			<a href="<%= url %>">
+				<img src="<%= image %>" alt="">
+			</a>
+		</div>
+	</div>
+</script> 
+<!--每日特价-->
+<script type="text/html" id="home2">
+	<div class="nctouch-home-block">
+	<% if (title) { %>
+		<div class="tit-bar mrtj"><%= title %></div>
+	<% } %>
+		<ul class="item-pic-l1-r2">
+			<li>
+				<a href="<%= square_url %>"><img src="<%= square_image %>" alt=""></a>
+			</li>
+			<li>
+				<a href="<%= rectangle1_url %>"><img src="<%= rectangle1_image %>" alt=""></a>
+			</li>
+			<li>
+				<a href="<%= rectangle2_url %>"><img src="<%= rectangle2_image %>" alt=""></a>
+			</li>
+		</ul>
+	</div>
+</script> 
+
+<script type="text/html" id="home3">
+	<div class="nctouch-home-block">
+	<% if (title) { %>
+		<div class="tit-bar"><%= title %></div>
+	<% } %>
+		<ul class="item-pic-list">
+		<% for (var i in item) { %>
+			<li>
+				<a href="<%= item[i].url %>"><img src="<%= item[i].image %>" alt=""></a>
+			</li>
+		<% } %>
+		</ul>
+	</div>
+</script> 
+<!--优途推介-->
+<script type="text/html" id="recommend">
+	<div class="nctouch-home-block">
+	<% if (title) { %>
+		<div class="tit-bar"><%= title %></div>
+	<% } %>
+		<ul class="item-pic-l1-r4">
+		<% for (var i in item) { %>
+			<li>
+				<a href="<%= item[i].url %>"><img src="<%= item[i].goods_image %>" alt=""></a>
+			</li>
+		<% } %>
+		</ul>
+	</div>
+</script> 
+<!--<script type="text/html" id="home4">
+	<div class="nctouch-home-block">
+	<% if (title) { %>
+		<div class="tit-bar"><%= title %></div>
+	<% } %>
+		<ul class="item-pic-l2-r1">
+			<li>
+				<a href="<%= rectangle1_url %>"><img src="<%= rectangle1_image %>" alt=""></a>
+			</li>
+			<li>
+				<a href="<%= rectangle2_url %>"><img src="<%= rectangle2_image %>" alt=""></a>
+			</li>
+			<li>
+				<a href="<%= square_url %>"><img src="<%= square_image %>" alt=""></a>
+			</li>
+		</ul>
+	</div>
+</script>-->
+<!--发现更多-->
+<script type="text/html" id="goods">
+	<div class="nctouch-home-block item-goods">
+	<% if (title) { %>
+		<div class="tit-bar"><%= title %></div>
+	<% } %>
+		<ul class="goods-list">
+		<% for (var i in item) { %>
+			<li>
+				<a href="tmpl/product_detail.html?goods_id=<%= item[i].goods_id %>">
+					<div class="goods-pic"><img src="<%= item[i].goods_image %>" alt=""></div>
+					<dl class="goods-info">
+						<dt class="goods-name"><%= item[i].goods_name %></dt>
+						<dd class="goods-price">￥<em><%= item[i].goods_promotion_price %></em></dd>
+					</dl>
+				</a>
+			</li>
+		<% } %>
+		</ul>
+	</div>
+</script>
+
+<script type="text/javascript" src="js/config.js"></script> 
+<script type="text/javascript" src="js/zepto.min.js"></script> 
+<script type="text/javascript" src="js/template.js"></script> 
+<script type="text/javascript" src="js/common.js"></script> 
+<script type="text/javascript" src="js/swipe.js"></script> 
+<script type="text/javascript" src="js/index.js"></script> 
+<script type="text/javascript" src="js/tmpl/footer.js"></script>
+
+
+</body>
+</html>

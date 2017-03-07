@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../../font/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../css/group_activity.css">
+		<title>优品新发现</title>
+		
+		
+	</head>
+	<body>
+		<header class="header">
+            <div class="header-left">
+                <a href="javascript:history.go(-1);" class="icon iconfont icon-zuosvg"></a>
+            </div>
+            <div class="header-right">
+                <i class="header-icon icon-search"></i>
+            </div>
+            <h1 class="page-tt">优品新发现</h1>
+        </header>
+        <main class="page-wrap">
+        	<!--<section class="newfind-box">
+        		<a href="#"><img src="http://upload.utoapi.com/mobile/special/s0/s0_05277020042782094.png"  alt=""  width="100%" />
+        		<span>asdasfsdfsdf</span>
+        		<span>asdasfsdfsdf</span>
+        		</a>
+        		<p>
+        			<time><span class="iconfont icon-shijian"></span> 3月18日  14:20:20 </time>
+        			<span class="iconfont icon-chakansvg"></span>2620
+        			<a href="javascript:;" class="iconfont icon-fenxiangsvg js-dialog-btn"></a>	
+        			
+        		</p>
+        	</section>
+        	<section class="newfind-box">
+        		<a href="#"><img src="http://upload.utoapi.com/mobile/special/s0/s0_05277020042782094.png"  alt=""  width="100%" /></a>
+        		<p>
+        			<time><span class="iconfont icon-shijian"></span> 3月18日  14:20:20 </time>
+        			<span class="iconfont icon-chakansvg"></span>2620
+        			<a href="javascript:;" class="iconfont icon-fenxiangsvg js-dialog-btn"></a>	
+        		</p>
+        	</section>
+        	<section class="newfind-box">
+        		<a href="#"><img src="http://upload.utoapi.com/mobile/special/s0/s0_05277020042782094.png"  alt=""  width="100%" /></a>
+        		<p>
+        			<time><span class="iconfont icon-shijian"></span> 3月18日  14:20:20 </time>
+        			<span class="iconfont icon-chakansvg"></span>2620
+        			<a href="javascript:;" class="iconfont icon-fenxiangsvg js-dialog-btn"></a>	
+        		</p>
+        	</section>-->
+        	
+        </main>
+         	<!--弹窗部分-->
+		 <section class="dialog-wrap">    
+		    <div class="overlay"></div>
+		    <div class="dialog">
+		        <div class="dialog-bd">
+		           <ul>
+		           	<li><img src="../../images/friend@2x.png"/><p>朋友圈</p></li>
+		           	<li><img src="../../images/weixin@2x.png"/><p>微信好友</p></li>
+		           	<li><img src="../../images/sina@2x.png"/><p>新浪微博</p></li>
+		           	<li><img src="../../images/qq_zone@2x.png"/><p>QQ空间</p></li>
+		           	<li><img src="../../images/QQ@2x.png"/><p>QQ好友</p></li>
+		           </ul>
+		        </div>
+		        <footer class="dialog-ft ft--full">
+		           <i class="iconfont icon-guanbi1 ft-24" ></i>
+		        </footer>
+		    </div>
+		</section>
+		<script type="text/html" id="find">
+		<% if(datas.length > 0){%>
+			<%for(i=0;i<datas.length;i++){%>
+				<section class="newfind-box">
+	        		<a href="#"><img src=<%= datas[i].discover_image %>  alt=""  width="100%" />
+	        			<span><%= datas[i].discover_title %></span>
+        				<span><%= datas[i].discover_describe %>f</span>
+        			</a>
+	        		<p>
+	        			<time><span class="iconfont icon-shijian"></span><%= datas[i].add_time %></time>
+	        			<span class="iconfont icon-chakansvg"></span><%= datas[i].page_view %>
+	        			<a href="javascript:;" class="iconfont icon-fenxiangsvg js-dialog-btn"></a>	
+	        		</p>
+	        	</section>
+        	<%} %>	
+		<%
+		}
+		%>	
+		</script>
+		<script type="text/javascript" src="../../js/config.js"></script> 
+		<script type="text/javascript" src="../../js/zepto.min.js"></script> 
+		<script type="text/javascript" src="../../js/template.js"></script> 
+		<script type="text/javascript" src="../../js/common.js"></script> 
+		<script src="../../js/tmpl/newfind.js" type="text/javascript"></script>
+	</body>
+</html>
+

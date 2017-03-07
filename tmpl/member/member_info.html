@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1" />
+    <title>个人信息</title>
+    <link rel="stylesheet" href="../../font/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_member.css">
+    <style type="text/css">
+        .member-center dl {
+            box-shadow: 0 0px 0 rgba(0,0,0,0.05);
+        }
+        .member_head {
+            height: 2rem;
+            width: 2rem;
+            border-radius: 2rem;
+        }
+        .nctouch-default-list li {
+            padding: 0;
+        }
+        .mt5 {
+            margin-top: 0rem !important;
+        }
+        ul {
+            margin-top:0.5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="header-wrap">
+        <div class="header-l"> <a href="member.html"> <i class="back icon iconfont">&#xe601;</i> </a> </div>
+        <div class="header-title">
+            <h1>个人信息</h1>
+        </div>
+    </div>
+</header>
+
+<div class="nctouch-main-layout" style="padding-top: 0.01rem">
+    <ul class="nctouch-default-list">
+        <li>
+            <div class="member-center">
+                <dl class="mt5">
+                    <dt>
+                        <!--<a href="order_list.html">-->
+                            <h3>头像</h3>
+                            <h5><img class="member_head" src="../../images/qq.png"></h5>
+                        <!--</a>-->
+                    </dt>
+                </dl>
+            </div>
+        </li>
+        <li>
+            <div class="member-center">
+                <dl class="mt5">
+                    <dt>
+                    <h3>昵称</h3>
+                    <h5 style="width: 80%"><input type="text" placeholder="小胖子" style="border: 0;text-align: right;width: 100%" ></h5>
+                    </dt>
+                </dl>
+            </div>
+        </li>
+        <li>
+            <div class="member-center">
+                <dl class="mt5">
+                    <dt>
+                        <a href="address_list.html">
+                            <h3>地址簿</h3>
+                            <h5>查看地址簿<i class="icon iconfont">&#xe602;</i></h5>
+                        </a>
+                    </dt>
+                </dl>
+            </div>
+        </li>
+    </ul>
+    <ul class="nctouch-default-list">
+        <li>
+            <div class="member-center">
+                <dl class="mt5">
+                    <dt>
+                        <h3>姓名</h3>
+                        <h5 style="width: 80%"><input type="text" placeholder="您的姓名不会被公开" style="border: 0;text-align: right;width: 100%" ></h5>
+                    </dt>
+                </dl>
+            </div>
+        </li>
+        <li>
+            <div class="member-center">
+                <dl class="mt5">
+                    <dt>
+                    <h3>生日</h3>
+                    <h5>1898-03-01<i class="icon iconfont">&#xe602;</i></h5>
+                    </dt>
+                </dl>
+            </div>
+        </li>
+        <li>
+            <div class="member-center">
+                <dl class="mt5">
+                    <dt>
+                    <h3>性别</h3>
+                    <h5>女<i class="icon iconfont">&#xe602;</i></h5>
+                    </dt>
+                </dl>
+            </div>
+        </li>
+        <li>
+            <div class="member-center">
+                <dl class="mt5">
+                    <dt>
+                    <h3>车型</h3>
+                    <h5 style="width: 80%"><input type="text" placeholder="奥迪" style="border: 0;text-align: right;width: 100%" ></h5>
+                    </dt>
+                </dl>
+            </div>
+        </li>
+        <li>
+            <div class="member-center">
+                <dl class="mt5">
+                    <dt>
+                    <h3>电子邮件</h3>
+                    <h5 style="width: 80%"><input type="text" placeholder="请输入电子邮件" style="border: 0;text-align: right;width: 100%" ></h5>
+                    </dt>
+                </dl>
+            </div>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="../../js/config.js"></script>
+<script type="text/javascript" src="../../js/zepto.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+<script type="text/javascript" src="../../js/tmpl/member.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+
+
+        $(".mt5").click(function (e) {
+
+            let name = this.getElementsByTagName('h3')[0].innerHTML;
+
+            if (name == "头像") {
+
+            }else if (name == "生日") {
+
+            }else if (name == "性别") {
+                window.location.href = "member_info_sex.html";
+            }
+
+        });
+    })
+</script>
+</body>
+</html>

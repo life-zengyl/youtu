@@ -1,0 +1,128 @@
+<html><head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1">
+	<title>企业采购</title>
+	<link rel="stylesheet" type="text/css" href="../../css/base.css">
+	
+	<link rel="stylesheet" type="text/css" href="../../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../../font/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/group_activity.css">
+</head>
+<body>
+	<header class="header">
+	    <div class="header-left">
+	        <a href="javascript:history.go(-1)" class="icon iconfont icon-zuosvg"></a>
+	    </div>
+	    <h1 class="page-tt">企业采购</h1>
+	</header>
+	
+
+<div class="main">	
+	<div class="search-box">
+        <a href="../search.html" class="search-ele-wrap">
+             <i class="icon iconfont icon-sousuo" ></i> 饼干
+        </a>
+    </div>
+	<div class="img-box">
+		<img src="http://upload.utoapi.com/mobile/special/s0/s0_05277020042782094.png"  alt=""  width="100%" />
+	</div>
+	
+	<section class="section-col2">
+		<ul class="tab-box">
+			<li class="active" flag='true'><a href="javascript:;">最新</a></li>
+			<li flag='true'><a href="javascript:;">价格</a>
+				<p>
+					<a class="icon iconfont icon-shangsvg" href="javascript:;" ></a>
+					<a class="icon iconfont icon-xiasvg" href="javascript:;"></a>
+					
+				</p>
+			</li>
+		</ul>
+		<div class="pro-box">
+			<!-- 本周热卖-->
+			<ul class="active"></ul>			
+		</div>
+	</section>
+	
+</div>
+<div class="return-top" id="goTopBtn">
+	<i></i>
+</div>
+<div class="show-nav">
+	<i></i>
+</div>
+<a href="../cart_list.html" class="show-cart">
+	<i></i>
+	<sub></sub>
+</div>		
+<footer class="aui-bar aui-bar-tab" id="footer"></footer>
+</body>
+<script id="list" type="text/html">
+	<% for(var i=0;i<datas.length;i++) { %>
+		<li>
+		<a href="../product_detail.html?goods_id=<%= datas[i].goods_id %>">
+			<img src="<%= datas[i].goods_img %>">
+		</a>
+		<h3 class="text-overflow"><%= datas[i].goods_name %></h3>
+		<p class="clearfix">
+			<span class="price fleft">¥ <em> <%= datas[i].goods_price %></em></span>
+			<span class="sell-num fright">已售<%= datas[i].procurement_num %></span>
+		</p>
+		<p><s>¥ <%= datas[i].procurement_price %></s></p>
+	</li>
+	<% } %>
+	
+</script>
+
+<script type="text/javascript" src="../../js/config.js"></script>
+<script type="text/javascript" src="../../js/zepto.min.js"></script>
+<script type="text/javascript" src="../../js/template.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+	
+<script>
+	 $('.return-top').on('click', function () {
+     	$(window).scrollTop(0);
+    });
+    //商品默认展示
+    function getList(op){
+    	$.get(ApiUrl + '/index.php?act=procurement&op='+op,function(result){
+    	var result=JSON.parse(result);
+		    if(result.code=='200'){
+		    	  var html = template.render('list', result);
+		        $(".pro-box ul").append(html);
+		    	
+		    }     
+  		});
+    }
+    var flag=true;
+    $('.tab-box li').click(function(){
+    	var index=$(this).index();
+    	$(this).addClass('active').siblings().removeClass('active');
+    	$('.pro-box ul').html('');
+    	if(index==0){
+    		  getList('index');
+    	}else{
+    		if(flag){
+    			getList('low_price');
+    		}else{
+    			getList('high_price');
+    		}
+    		flag=!flag;
+    	}
+    	
+    	
+    })
+    
+    getList('index');
+
+  
+</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../../font/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="../../css/group_activity.css">		
+		<title>福利</title>
+	
+	</head>
+	<body>
+		<header class="header">
+            <div class="header-left">
+                <a href="javascript:history.go(-1);" class="icon iconfont icon-zuosvg"></a>
+            </div>
+            <div class="header-right">
+                <i class="header-icon icon-search"></i>
+            </div>
+            <h1 class="page-tt">福利</h1>
+        </header>
+       <main class="page-wrap">
+       	<div class="active-banner">
+       		<img class="swiper-img fadeIn" src="http://d01.res.meilishuo.net/pic/_o/82/3e/0174b432cd2e588515011df335b0_640_960.ch.jpg">
+       	</div>
+       	<section class="welfare-box">
+       		<div class="welfare-tt">
+       			<p class="line"></p>
+       			<span>稀缺神券&nbsp;&nbsp;限量领取</span>
+       		</div>
+       		<ul>
+       			<li>
+       				<div class="img-box">
+       					<a href="javascript:;" class="js-dialog-btn"><img src="http://pic.qiantucdn.com/01/07/14/58bOOOPIC6b.jpg" class="show-area-pic" id="show-area-pic" alt="代金券字体设计" title="代金券字体设计" ></a>
+       				</div>
+       				<div class="act-status">
+       					已抢完
+       				</div>
+       			</li>
+       				<li>
+       				<div class="img-box">
+       					<a href=""><img src="http://pic.qiantucdn.com/01/07/14/58bOOOPIC6b.jpg" class="show-area-pic" id="show-area-pic" alt="代金券字体设计" title="代金券字体设计" ></a>
+       				</div>
+       				<div class="act-status">
+       					已抢完
+       				</div>
+       			</li>
+       				<li>
+       				<div class="img-box">
+       					<a href=""><img src="http://pic.qiantucdn.com/01/07/14/58bOOOPIC6b.jpg" class="show-area-pic" id="show-area-pic" alt="代金券字体设计" title="代金券字体设计" ></a>
+       				</div>
+       				<div class="act-status">
+       					已抢完
+       				</div>
+       			</li>
+       		</ul>
+       	</section>
+       	<!--弹窗部分-->
+		 <section class="dialog-wrap">    
+		    <div class="overlay"></div>
+		    <div class="dialog">
+		        <div class="dialog-bd">
+		             <h3 class="bd-tt">领取成功！</h3>
+		             <p class="bd-txt">优惠券将在积分钟后发放在账号<br/>先去逛逛吧！</p>
+		        </div>
+		      
+		        <footer class="dialog-ft ft--full">
+		           <span>确定</span>
+		        </footer>
+		    </div>
+		</section>
+		
+       </main>
+       	<script type="text/javascript" src="../../js/zepto.min.js"></script>
+       <script>
+       $(function(){
+       		$('.js-dialog-btn').on('click', function(){
+				var $dialogWrap = $('.dialog-wrap');
+				var index = $(this).index();
+				console.log(index);
+				$dialogWrap.removeClass('active').eq(index).addClass('active')
+				.on('click',function(){
+					$(this).removeClass('active');
+				});
+			})
+       })
+       
+       </script>
+	</body>
+</html>

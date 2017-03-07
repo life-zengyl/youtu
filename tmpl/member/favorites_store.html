@@ -1,0 +1,135 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1" />
+<title>店铺收藏</title>
+<link rel="stylesheet" href="../../font/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/nctouch_products_list.css">
+    <style>
+        .aui-tab-item.aui-active{
+            color: #EC4E28;
+            border-bottom: 2px solid #EC4E28;
+            z-index: 100;
+        }
+    </style>
+
+</head>
+<body>
+<header id="header" class="fixed">
+    <div class="header-wrap">
+        <div class="header-l"> <a href="member.html"> <i class="back icon iconfont">&#xe601;</i> </a> </div>
+        <div class="header-tab" ><a href="favorites.html">商品收藏</a><a href="javascript:void(0);" class="cur">店铺收藏</a></div>
+        <div class="header-r"> <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a> </div>
+    </div>
+    <div class="nctouch-nav-layout">
+        <div class="nctouch-nav-menu"> <span class="arrow"></span>
+            <ul>
+                <li><a href="../../index.html"><i class="home"></i>首页</a></li>
+                <li><a href="../search.html"><i class="search"></i>搜索</a></li>
+                <li><a href="javascript:void(0);" id="toChatList"><i class="message"></i>消息<sup></sup></a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="nctouch-main-layout">
+      <ul class="favorites-store-list" id="favorites_list"></ul>
+</div>
+<div class="fix-block-r">
+    <a href="javascript:void(0);" class="gotop-btn gotop hide" id="goTopBtn"><i></i></a>
+</div>
+<footer class="aui-bar aui-bar-tab" id="footer"></footer>
+<script type="text/html" id="sfavorites_list">
+    <%if(favorites_list.length>0){%>
+        <% for (var k in favorites_list) { var v = favorites_list[k]; %>
+        <li id="favitem_<%=v.store_id %>">
+            <a href="<%=WapSiteUrl%>/tmpl/store.html?store_id=<%=v.store_id %>">
+                <div class="store-avatar" style="margin-top:0.5rem;">
+                    <input data_id="<%=v.store_id %>" nc_type="fav_del" type="checkbox"  class="checkbox">
+                </div>
+                <div class="store-avatar" style="left: 2rem;"><img src="<%=v.store_avatar_url %>"/></div>
+                <dl class="store-info" style="margin: 0 0 0 4.5rem">
+                    <dt class="store-name"><%=v.store_name %></dt>
+                    <dd><span>粉丝：<em><%=v.store_collect %></em>人</span><span>商品：<em><%=v.goods_count %></em>件</span></dd>
+                </dl>
+            </a>
+			<a href="javascript:void(0);" nc_type="fav_del" data_id="<%=v.store_id %>" class="del-fav"></a>
+        </li>
+        <%}%>
+        <li class="loading"><div class="spinner"><i></i></div>数据读取中</li>
+
+
+        <li id="" style="margin-top:17rem;">
+            <a href="#">
+                <div onclick="checkboxall();" class="store-avatar" style="margin-top:0.5rem;width: 5rem;">
+                    <input nc_type='checkboxall' id="checkboxall"  type="checkbox"  class="checkbox">
+                    <label for="checkboxall">全选</label>
+                </div>
+                <dl class="store-info" style="margin: 0 0 0 4.5rem">
+                    <p><div onclick="cancel()" class="aui-btn" style="background-color:#FFFFFF;border: 1px solid #EE613F;color: #EE613F;margin-left: 7rem;" >取消收藏</div></p>
+                </dl>
+            </a>
+        </li>
+
+    <%}else{%>
+    <div class="nctouch-norecord favorite-store">
+        <div class="norecord-ico"><i></i></div>
+        <dl>
+            <dt>您还没有关注任何店铺</dt>
+            <dd>可以去看看哪些店铺值得收藏</dd>
+        </dl>
+        <a href="<%=WapSiteUrl%>" class="btn">随便逛逛</a>
+    </div>
+    <%}%>
+</script>
+<script type="text/javascript" src="../../js/config.js"></script> 
+<script type="text/javascript" src="../../js/zepto.min.js"></script> 
+<script type="text/javascript" src="../../js/template.js"></script> 
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/simple-plugin.js"></script>
+<script type="text/javascript" src="../../js/ncscroll-load.js"></script>
+<script type="text/javascript" src="../../js/tmpl/favorites_store.js"></script> 
+<script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+
+<script type="text/javascript">
+
+    function checkboxall(){
+        if ($('#checkboxall').is(':checked')) {
+            $("input[type='checkbox']").attr("checked","true");
+        } else {
+            $("input[type='checkbox']").removeAttr("checked");
+        }
+    }
+
+
+    function cancel(){
+
+        if (confirm('确定要取消吗？')){
+            $("input[nc_type='fav_del']").each(function () {
+                if ($(this).is(':checked')) {
+                    store_id = $(this).attr('data_id');
+                    if(dropFavoriteStore(store_id)){
+                        $("#favitem_"+store_id).remove();
+                    }
+                }
+
+
+            });
+        }
+    }
+
+
+</script>
+
+
+
+</body>
+</html>
